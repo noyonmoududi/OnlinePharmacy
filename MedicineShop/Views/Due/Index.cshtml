@@ -1,0 +1,26 @@
+﻿@model MedicineShop.ViewModel.DueCustomerViweModel
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+
+@using (Html.BeginForm("Add", "Due"))
+{
+    @Html.ValidationSummary( true, "Please fix the following error")
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustomerName)
+        @Html.TextBoxFor(m => m.CustomerName, new {@class = "form-control", @readonly = "readonly"})
+        @Html.ValidationMessageFor(m => m.CustomerName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Amount)
+        @Html.TextBoxFor(m => m.Amount, new {@class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Amount)
+    </div>
+    @Html.HiddenFor(c => c.CustomerId)
+    <button type="submit" class="btn btn-default">Save</button>
+}
+
+
+

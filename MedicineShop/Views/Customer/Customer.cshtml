@@ -1,0 +1,49 @@
+﻿@model MedicineShop.Models.Customer
+@{
+    ViewBag.Title = "Customer";
+}
+
+<div class="row">
+    <p>&nbsp;</p>
+</div>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="jumbotron">
+
+            <h2>Customer form</h2>
+
+            @using (Html.BeginForm("Add", "Customer"))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CustomerName)
+                    @Html.TextBoxFor(m => m.CustomerName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CustomerName)
+                </div> <div class="form-group">
+                    @Html.LabelFor(m => m.District)
+                    @Html.TextBoxFor(m => m.District, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.District)
+                </div> <div class="form-group">
+                    @Html.LabelFor(m => m.City)
+                    @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.City)
+                </div> <div class="form-group">
+                    @Html.LabelFor(m => m.Village)
+                    @Html.TextBoxFor(m => m.Village, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Village)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PhoneNo)
+                    @Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.PhoneNo)
+                </div>
+                @Html.HiddenFor(m => m.Id)
+                <button type="Submit" class="btn btn-primary">Submit</button>
+            }
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+
+</div>
+
+
