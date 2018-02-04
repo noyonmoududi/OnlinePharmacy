@@ -236,12 +236,21 @@
     <Compile Include="Migrations\201712132218131_location.Designer.cs">
       <DependentUpon>201712132218131_location.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802042036023_AddOrder.cs" />
+    <Compile Include="Migrations\201802042036023_AddOrder.Designer.cs">
+      <DependentUpon>201802042036023_AddOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802042046527_AddOrder1.cs" />
+    <Compile Include="Migrations\201802042046527_AddOrder1.Designer.cs">
+      <DependentUpon>201802042046527_AddOrder1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DueAmount.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -487,6 +496,7 @@
     <Content Include="Views\Customer\Customer.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Due\Index.cshtml" />
+    <Content Include="Views\Due\DueDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -511,6 +521,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712132218131_location.resx">
       <DependentUpon>201712132218131_location.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802042036023_AddOrder.resx">
+      <DependentUpon>201802042036023_AddOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802042046527_AddOrder1.resx">
+      <DependentUpon>201802042046527_AddOrder1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

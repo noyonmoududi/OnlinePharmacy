@@ -26,7 +26,7 @@ namespace MedicineShop.Controllers
             return View();
         }
 
-        public ActionResult Add()
+        public ActionResult New()
         {
             var customer = new Customer();
 

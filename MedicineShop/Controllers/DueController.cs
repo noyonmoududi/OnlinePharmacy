@@ -13,6 +13,8 @@ namespace MedicineShop.Controllers
 
         private ApplicationDbContext _context;
 
+        public int Amount { get; set; }
+
         public DueController()
         {
             _context = new ApplicationDbContext();
@@ -31,17 +33,20 @@ namespace MedicineShop.Controllers
             var dueAmount = new DueCustomerViweModel
             {
                 CustomerName = duecustomer.CustomerName,
-                CustomerId = duecustomer.Id
+                CustomerId = duecustomer.Id,
+
 
             };
 
 
             return View("Index", dueAmount);
+
         }
 
         public ActionResult Add(DueAmount due)
         {
             var duecustomer = _context.Customers.SingleOrDefault(c => c.Id == due.CustomerId);
+
 
             if (ModelState.IsValid)
             {
@@ -51,7 +56,7 @@ namespace MedicineShop.Controllers
                     {
                         CustomerId = duecustomer.Id,
                         Amount = due.Amount,
-                        Date = DateTime.Today
+                        Date = DateTime.Now
 
                     };
 
@@ -63,6 +68,43 @@ namespace MedicineShop.Controllers
             }
             return RedirectToAction("Index", "Customer");
         }
+
+        public ActionResult DueDetails(int id)
+        {
+            var due = _context.DueAmounts.Where(c => c.CustomerId == id).ToList();
+            return View("DueDetails",due);
+        }
+
+        //public ActionResult Less(DueAmount Lessdue)
+        //{
+        //    var duecustomer = _context.Customers.SingleOrDefault(c => c.Id == Lessdue.CustomerId);
+        //    List<double> list = new List<double>();
+
+        //    var data = _context.Customers.ToList();
+        //    var data1 = _context.DueAmounts.ToList();
+
+        //    foreach (var group in data)
+        //    {
+        //        double value = 0;
+        //        foreach (var asdf in data1)
+        //        {
+
+        //            if (group.Id == asdf.CustomerId)
+        //            {
+
+        //                value = value - asdf.Amount;
+        //            }
+
+        //        }
+        //        group.DueAmounts = value;
+        //    }
+        //    double[] array = list.ToArray();
+
+        //    //var customer = _context.Customers.ToList();
+        //    //return Ok(data);
+
+        //    return RedirectToAction("Index", "Customer");
+        //}
 
     }
 }

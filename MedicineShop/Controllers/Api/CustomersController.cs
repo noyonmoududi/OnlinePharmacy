@@ -5,6 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using MedicineShop.Models;
+using System.Data.Entity;
+using System.Web.Mvc;
 
 namespace MedicineShop.Controllers.Api
 {
@@ -19,8 +21,30 @@ namespace MedicineShop.Controllers.Api
 
         public IHttpActionResult GetCustomer()
         {
-            var customer = _context.Customers.ToList();
-            return Ok(customer);
+            List<double> list = new List<double>();
+
+            var data = _context.Customers.ToList();
+            var data1 = _context.DueAmounts.ToList();
+
+            foreach (var group in data)
+            {
+                double value = 0;
+                foreach (var asdf in data1)
+                {
+                  
+                    if (group.Id == asdf.CustomerId)
+                    {
+                        
+                        value = value + asdf.Amount;
+                    }
+
+                }
+                group.DueAmounts = value;
+            }
+            double[] array = list.ToArray();
+
+            //var customer = _context.Customers.ToList();
+            return Ok(data);
         }
 
         public IHttpActionResult DeleteCustomer(int id)

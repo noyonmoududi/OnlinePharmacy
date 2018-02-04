@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MedicineShop.Models.DueAmount>
+
+@{
+    ViewBag.Title = "DueDetails";
+}
+
+<h2>DueDetails</h2>
+
+
+<table id="products" class="table table-striped table-hover table-responsive">
+    <thead>
+    <tr>
+        
+        <th>Amount</th>
+        <th>Date</th>
+
+    </tr>
+
+    </thead>
+    @foreach (var DueAmount in Model)
+    {
+        <tr>
+            
+            <td>@DueAmount.Amount</td>
+            <td>@DueAmount.Date</td>
+        </tr>
+    }
+
+</table>
+

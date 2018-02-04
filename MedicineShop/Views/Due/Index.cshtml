@@ -3,6 +3,7 @@
     ViewBag.Title = "Index";
 }
 <h2>Index</h2>
+@Html.ActionLink("See  All Due Details", "DueDetails", "Due", new {@id = Model.CustomerId}, null)
 
 @using (Html.BeginForm("Add", "Due"))
 {
@@ -20,7 +21,10 @@
     </div>
     @Html.HiddenFor(c => c.CustomerId)
     <button type="submit" class="btn btn-default">Save</button>
+ 
+    
 }
+
 
 
 

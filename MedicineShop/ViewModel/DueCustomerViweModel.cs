@@ -16,5 +16,7 @@ namespace MedicineShop.ViewModel
         public int Amount { get; set; }
 
         public DateTime Date { get; set; }
+        public object Dueamount { get; internal set; }
+        public int Id { get; internal set; }
     }
 }
