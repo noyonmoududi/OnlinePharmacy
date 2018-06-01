@@ -15,7 +15,7 @@ namespace MedicineShop.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Our Sysstem description";
 
             return View();
         }

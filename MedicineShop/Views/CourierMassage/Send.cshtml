@@ -1,0 +1,89 @@
+﻿@model MedicineShop.Models.CourierMessage
+@{
+    ViewBag.Title = "Send";
+
+    if (this.User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (this.User.IsInRole("Courier"))
+    {
+        Layout = "~/Views/Shared/_LayoutCourier.cshtml";
+    }
+    else if (this.User.IsInRole("DeliveryMan"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+    }
+}
+
+@using (Html.BeginForm("SendMessage", "CourierMassage", FormMethod.Post))
+{
+    <div id="all">
+
+        <div id="content">
+            <div class="container">
+                <div class="col-md-10" id="order">
+
+                    <div class="box">
+                        <form method="post">
+
+                            <ul class="nav nav-pills nav-justified">
+                                <li class="active">
+                                    <a href="#">Type Order Information<br><i class="fa fa-map-marker"></i></a>
+                                </li>
+                            </ul>
+                            <br />
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="message">Message</label>
+                                            @Html.TextBoxFor(m => m.Message, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="location">Location</label>
+                                            @Html.TextBoxFor(m => m.Location, new { @class = "form-control" })
+                                            @Html.HiddenFor(m => m.AdminMassageId)
+                                            @Html.HiddenFor(m => m.CartOrderId)
+                                            @*@Html.HiddenFor(c => c.CartOrderId)*@
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="location">PhoneNo</label>
+                                            @Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control" })
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box-footer">
+                                <div class="pull-left">
+                                    <a href="basket.html" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to OrderList</a>
+                                </div>
+                                <div class="pull-right">
+                                    <button type="submit" class="btn btn-primary">
+                                        Submit<i class="fa fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.box -->
+
+
+                </div>
+                <!-- /.col-md-9 -->
+            </div>
+        </div>
+    </div>
+}
+

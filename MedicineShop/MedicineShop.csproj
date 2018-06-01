@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -85,6 +86,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -210,13 +213,23 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminMessageController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\Api\ProductsController.cs" />
+    <Compile Include="Controllers\CartOrdersController.cs" />
+    <Compile Include="Controllers\CourierMassageController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\CustomerOrdertrackingController.cs" />
+    <Compile Include="Controllers\DeliveryManMessageController.cs" />
     <Compile Include="Controllers\DueController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Item.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\PrescriptionController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -244,21 +257,162 @@
     <Compile Include="Migrations\201802042046527_AddOrder1.Designer.cs">
       <DependentUpon>201802042046527_AddOrder1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802262057225_Addprescrip.cs" />
+    <Compile Include="Migrations\201802262057225_Addprescrip.Designer.cs">
+      <DependentUpon>201802262057225_Addprescrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802271103251_RemoveDatabase.cs" />
+    <Compile Include="Migrations\201802271103251_RemoveDatabase.Designer.cs">
+      <DependentUpon>201802271103251_RemoveDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803021320037_prescriptionModel.cs" />
+    <Compile Include="Migrations\201803021320037_prescriptionModel.Designer.cs">
+      <DependentUpon>201803021320037_prescriptionModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803231859001_CartOrder.cs" />
+    <Compile Include="Migrations\201803231859001_CartOrder.Designer.cs">
+      <DependentUpon>201803231859001_CartOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803231903597_ordercarts.cs" />
+    <Compile Include="Migrations\201803231903597_ordercarts.Designer.cs">
+      <DependentUpon>201803231903597_ordercarts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803231921078_cartOrderdatils.cs" />
+    <Compile Include="Migrations\201803231921078_cartOrderdatils.Designer.cs">
+      <DependentUpon>201803231921078_cartOrderdatils.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803232005516_cartOrderdatils1.cs" />
+    <Compile Include="Migrations\201803232005516_cartOrderdatils1.Designer.cs">
+      <DependentUpon>201803232005516_cartOrderdatils1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803241954575_cartOrderdetails.cs" />
+    <Compile Include="Migrations\201803241954575_cartOrderdetails.Designer.cs">
+      <DependentUpon>201803241954575_cartOrderdetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804021744341_userId.cs" />
+    <Compile Include="Migrations\201804021744341_userId.Designer.cs">
+      <DependentUpon>201804021744341_userId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804031809161_AdminMassagesss.cs" />
+    <Compile Include="Migrations\201804031809161_AdminMassagesss.Designer.cs">
+      <DependentUpon>201804031809161_AdminMassagesss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804031833268_couriermessagess.cs" />
+    <Compile Include="Migrations\201804031833268_couriermessagess.Designer.cs">
+      <DependentUpon>201804031833268_couriermessagess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804031857405_deliverymanmessage.cs" />
+    <Compile Include="Migrations\201804031857405_deliverymanmessage.Designer.cs">
+      <DependentUpon>201804031857405_deliverymanmessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804032041252_cartstatus.cs" />
+    <Compile Include="Migrations\201804032041252_cartstatus.Designer.cs">
+      <DependentUpon>201804032041252_cartstatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804032043323_adminstatus.cs" />
+    <Compile Include="Migrations\201804032043323_adminstatus.Designer.cs">
+      <DependentUpon>201804032043323_adminstatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804032044527_courierstatus.cs" />
+    <Compile Include="Migrations\201804032044527_courierstatus.Designer.cs">
+      <DependentUpon>201804032044527_courierstatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804032046114_deliverystatus.cs" />
+    <Compile Include="Migrations\201804032046114_deliverystatus.Designer.cs">
+      <DependentUpon>201804032046114_deliverystatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804041610471_exacptioncontrol.cs" />
+    <Compile Include="Migrations\201804041610471_exacptioncontrol.Designer.cs">
+      <DependentUpon>201804041610471_exacptioncontrol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804071919258_addcartidadd.cs" />
+    <Compile Include="Migrations\201804071919258_addcartidadd.Designer.cs">
+      <DependentUpon>201804071919258_addcartidadd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804091707360_deliverymancartId.cs" />
+    <Compile Include="Migrations\201804091707360_deliverymancartId.Designer.cs">
+      <DependentUpon>201804091707360_deliverymancartId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804200902401_role.cs" />
+    <Compile Include="Migrations\201804200902401_role.Designer.cs">
+      <DependentUpon>201804200902401_role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804200946043_role1.cs" />
+    <Compile Include="Migrations\201804200946043_role1.Designer.cs">
+      <DependentUpon>201804200946043_role1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805111926531_addvalidation.cs" />
+    <Compile Include="Migrations\201805111926531_addvalidation.Designer.cs">
+      <DependentUpon>201805111926531_addvalidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805111937230_addvalidationmassage.cs" />
+    <Compile Include="Migrations\201805111937230_addvalidationmassage.Designer.cs">
+      <DependentUpon>201805111937230_addvalidationmassage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805112028507_addvalidationmassagedelete.cs" />
+    <Compile Include="Migrations\201805112028507_addvalidationmassagedelete.Designer.cs">
+      <DependentUpon>201805112028507_addvalidationmassagedelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805112041593_addvalidationmassagebool.cs" />
+    <Compile Include="Migrations\201805112041593_addvalidationmassagebool.Designer.cs">
+      <DependentUpon>201805112041593_addvalidationmassagebool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805112048343_addvalidationmassagebooldeleteamount.cs" />
+    <Compile Include="Migrations\201805112048343_addvalidationmassagebooldeleteamount.Designer.cs">
+      <DependentUpon>201805112048343_addvalidationmassagebooldeleteamount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805130619074_cartordervalidation.cs" />
+    <Compile Include="Migrations\201805130619074_cartordervalidation.Designer.cs">
+      <DependentUpon>201805130619074_cartordervalidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805130624451_cartordervalidation2.cs" />
+    <Compile Include="Migrations\201805130624451_cartordervalidation2.Designer.cs">
+      <DependentUpon>201805130624451_cartordervalidation2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805130627114_cartordervalidationdelete.cs" />
+    <Compile Include="Migrations\201805130627114_cartordervalidationdelete.Designer.cs">
+      <DependentUpon>201805130627114_cartordervalidationdelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminMassage.cs" />
+    <Compile Include="Models\CartOrder.cs" />
+    <Compile Include="Models\CartOrderDetails.cs" />
+    <Compile Include="Models\CourierMessage.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\DeliveryManMessage.cs" />
     <Compile Include="Models\DueAmount.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderInfo.cs" />
+    <Compile Include="Models\PrescriptionModel.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\CourierViewModel.cs" />
     <Compile Include="ViewModel\DueCustomerViweModel.cs" />
+    <Compile Include="ViewModel\OrderTrackingViewModel.cs" />
+    <Compile Include="ViewModel\OrderViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\animate.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\custom.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\owl.carousel.css" />
+    <Content Include="Content\css\owl.theme.css" />
+    <Content Include="Content\css\owl.transitions.css" />
+    <Content Include="Content\css\style.blue.css" />
+    <Content Include="Content\css\style.default.css" />
+    <Content Include="Content\css\style.green.css" />
+    <Content Include="Content\css\style.mono.css" />
+    <Content Include="Content\css\style.pink.css" />
+    <Content Include="Content\css\style.violet.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.dataTables.css" />
@@ -366,6 +520,54 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\img\AjaxLoader.gif" />
+    <Content Include="Content\img\banner.jpg" />
+    <Content Include="Content\img\banner2.jpg" />
+    <Content Include="Content\img\basketsquare.jpg" />
+    <Content Include="Content\img\blog-avatar.jpg" />
+    <Content Include="Content\img\blog-avatar2.jpg" />
+    <Content Include="Content\img\blog.jpg" />
+    <Content Include="Content\img\blog2.jpg" />
+    <Content Include="Content\img\detailbig1.jpg" />
+    <Content Include="Content\img\detailbig2.jpg" />
+    <Content Include="Content\img\detailbig3.jpg" />
+    <Content Include="Content\img\detailsquare.jpg" />
+    <Content Include="Content\img\detailsquare2.jpg" />
+    <Content Include="Content\img\detailsquare3.jpg" />
+    <Content Include="Content\img\getinspired1.jpg" />
+    <Content Include="Content\img\getinspired2.jpg" />
+    <Content Include="Content\img\getinspired3.jpg" />
+    <Content Include="Content\img\grabbing.png" />
+    <Content Include="Content\img\logo-small.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\logo1.jpg" />
+    <Content Include="Content\img\Logo1.png" />
+    <Content Include="Content\img\main-slider1.jpg" />
+    <Content Include="Content\img\main-slider2.jpg" />
+    <Content Include="Content\img\main-slider3.jpg" />
+    <Content Include="Content\img\main-slider4.jpg" />
+    <Content Include="Content\img\main-slider5.jpg" />
+    <Content Include="Content\img\product1.jpg" />
+    <Content Include="Content\img\product1_2.jpg" />
+    <Content Include="Content\img\product2.jpg" />
+    <Content Include="Content\img\product2_2.jpg" />
+    <Content Include="Content\img\product3_2.jpg" />
+    <Content Include="Content\img\slider1.jpg" />
+    <Content Include="Content\img\slider2.jpg" />
+    <Content Include="Content\img\slider3.jpg" />
+    <Content Include="Content\img\slider4.jpg" />
+    <Content Include="Content\js\bootstrap-hover-dropdown.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\front.js" />
+    <Content Include="Content\js\jquery-1.11.0.min.js" />
+    <Content Include="Content\js\jquery.cookie.js" />
+    <Content Include="Content\js\jquery.flexslider.js" />
+    <Content Include="Content\js\jquery.flexslider.min.js" />
+    <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\modernizr.js" />
+    <Content Include="Content\js\owl.carousel.min.js" />
+    <Content Include="Content\js\respond.min.js" />
+    <Content Include="Content\js\waypoints.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -381,6 +583,7 @@
     </Content>
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Content\css\bootstrap.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -497,9 +700,42 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Due\Index.cshtml" />
     <Content Include="Views\Due\DueDetails.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Prescription\Addprescription.cshtml" />
+    <Content Include="Views\Prescription\Viewprescription.cshtml" />
+    <Content Include="Views\Prescription\DisplayImage.cshtml" />
+    <Content Include="Views\Product\OurProduct.cshtml" />
+    <Content Include="Views\ShoppingCart\Cart.cshtml" />
+    <Content Include="Views\ShoppingCart\CheckOut.cshtml" />
+    <Content Include="Views\ShoppingCart\OrderSuccess.cshtml" />
+    <Content Include="Views\CartOrders\Delete.cshtml" />
+    <Content Include="Views\CartOrders\Index.cshtml" />
+    <Content Include="Views\CartOrders\Orderreview.cshtml" />
+    <Content Include="Views\AdminMessage\Index.cshtml" />
+    <Content Include="Views\CourierMassage\Index.cshtml" />
+    <Content Include="Views\CourierMassage\OrderView.cshtml" />
+    <Content Include="Views\CourierMassage\Send.cshtml" />
+    <Content Include="Views\DeliveryManMessage\Index.cshtml" />
+    <Content Include="Views\DeliveryManMessage\Send.cshtml" />
+    <Content Include="Views\CustomerOrdertracking\OrderTrack.cshtml" />
+    <Content Include="Views\CustomerOrdertracking\Index.cshtml" />
+    <Content Include="Views\CustomerOrdertracking\Details.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\Details.cshtml" />
+    <Content Include="Views\Role\Delete.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutCourier.cshtml" />
+    <Content Include="Views\Shared\_LayoutDeliveryMan.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
+    <Content Include="Views\Prescription\Success.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\css\fonts\" />
+    <Folder Include="Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -528,6 +764,96 @@
     <EmbeddedResource Include="Migrations\201802042046527_AddOrder1.resx">
       <DependentUpon>201802042046527_AddOrder1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802262057225_Addprescrip.resx">
+      <DependentUpon>201802262057225_Addprescrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802271103251_RemoveDatabase.resx">
+      <DependentUpon>201802271103251_RemoveDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803021320037_prescriptionModel.resx">
+      <DependentUpon>201803021320037_prescriptionModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803231859001_CartOrder.resx">
+      <DependentUpon>201803231859001_CartOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803231903597_ordercarts.resx">
+      <DependentUpon>201803231903597_ordercarts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803231921078_cartOrderdatils.resx">
+      <DependentUpon>201803231921078_cartOrderdatils.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803232005516_cartOrderdatils1.resx">
+      <DependentUpon>201803232005516_cartOrderdatils1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803241954575_cartOrderdetails.resx">
+      <DependentUpon>201803241954575_cartOrderdetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804021744341_userId.resx">
+      <DependentUpon>201804021744341_userId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804031809161_AdminMassagesss.resx">
+      <DependentUpon>201804031809161_AdminMassagesss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804031833268_couriermessagess.resx">
+      <DependentUpon>201804031833268_couriermessagess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804031857405_deliverymanmessage.resx">
+      <DependentUpon>201804031857405_deliverymanmessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804032041252_cartstatus.resx">
+      <DependentUpon>201804032041252_cartstatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804032043323_adminstatus.resx">
+      <DependentUpon>201804032043323_adminstatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804032044527_courierstatus.resx">
+      <DependentUpon>201804032044527_courierstatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804032046114_deliverystatus.resx">
+      <DependentUpon>201804032046114_deliverystatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804041610471_exacptioncontrol.resx">
+      <DependentUpon>201804041610471_exacptioncontrol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804071919258_addcartidadd.resx">
+      <DependentUpon>201804071919258_addcartidadd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804091707360_deliverymancartId.resx">
+      <DependentUpon>201804091707360_deliverymancartId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804200902401_role.resx">
+      <DependentUpon>201804200902401_role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804200946043_role1.resx">
+      <DependentUpon>201804200946043_role1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805111926531_addvalidation.resx">
+      <DependentUpon>201805111926531_addvalidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805111937230_addvalidationmassage.resx">
+      <DependentUpon>201805111937230_addvalidationmassage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805112028507_addvalidationmassagedelete.resx">
+      <DependentUpon>201805112028507_addvalidationmassagedelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805112041593_addvalidationmassagebool.resx">
+      <DependentUpon>201805112041593_addvalidationmassagebool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805112048343_addvalidationmassagebooldeleteamount.resx">
+      <DependentUpon>201805112048343_addvalidationmassagebooldeleteamount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805130619074_cartordervalidation.resx">
+      <DependentUpon>201805130619074_cartordervalidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805130624451_cartordervalidation2.resx">
+      <DependentUpon>201805130624451_cartordervalidation2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805130627114_cartordervalidationdelete.resx">
+      <DependentUpon>201805130627114_cartordervalidationdelete.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

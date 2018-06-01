@@ -1,14 +1,29 @@
 ﻿@model MedicineShop.Models.Product
 @{
     ViewBag.Title = "Product";
+
+    if (this.User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (this.User.IsInRole("Courir"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (this.User.IsInRole("DeliveryMan"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
         <div class="jumbotron">
-
             <h3> Add your new Product</h3>
-
             @using (Html.BeginForm("Add", "Product"))
             {
                 <div class="form-group">
@@ -32,7 +47,8 @@
                     @Html.LabelFor(m => m.Price)
                     @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Price)
-                </div>  <div class="form-group">
+                </div>
+                <div class="form-group">
                     @Html.LabelFor(m => m.Location)
                     @Html.TextBoxFor(m => m.Location, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Location)

@@ -17,5 +17,7 @@ namespace MedicineShop.Models
 
         public DateTime Date { get; set; }
 
+
+
     }
 }

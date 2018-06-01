@@ -1,31 +1,47 @@
 ﻿@model IEnumerable<MedicineShop.Models.Product>
 @{
     ViewBag.Title = "Index";
+    ViewBag.Title = "Product";
+
+    if (this.User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (this.User.IsInRole("Courir"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (this.User.IsInRole("DeliveryMan"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }
 
-<h2>Index</h2>
 
 @Html.ActionLink(" Add New Product", "New", "Product", null)
 
-    
+<table id="products" class="table table-striped table-hover table-responsive">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Group</th>
+        <th>CompannyName</th>
+        <th>Price</th>
+        <th>Location</th>
+      
+    </tr>
+    </thead>
 
-    <table id="products" class="table table-striped table-hover table-responsive">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Group</th>
-            <th>CompannyName</th>
-            <th>Price</th>
-            <th>Location</th>
-            <th>Delete</th>
-        </tr>
-        </thead>
-       
-    </table>
-    @section scripts
+</table>
+
+@section scripts
     {
-        <script>
+    <script>
             $(document).ready(function() {
                 $("#products").DataTable({
                     ajax: {
@@ -52,21 +68,25 @@
                             data: "price"
                         },
                         {
-                            data: "location"                                      
+                            data: "location"
                         },
-                        {
-                            data: "id",
-                            render: function(data) {
-                                return "<button class='btn-link js-delete' data.product-id=" + data + ">Delete</button>";
+                        //{
+                        //    data: "id",
+                        //    render: function(data) {
+                        //        return "<button class='btn-link js-delete' data.product-id=" + data + ">Delete</button>";
 
-                            } 
-                        }
+                        //    }
+                        //}
 
                     ]
                 });
                 });
-        </script>
-    }
+    </script>
+}
 
+
+
+      
+  
 
 

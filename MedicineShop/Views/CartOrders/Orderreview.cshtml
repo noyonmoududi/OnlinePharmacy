@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MedicineShop.Models.CartOrderDetails>
+@{
+    ViewBag.Title = "Orderreview";
+    if (this.User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (this.User.IsInRole("Courir"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (this.User.IsInRole("DeliveryMan"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+    }
+}
+
+
+<table id="products" class="table table-striped table-hover table-responsive">
+    <thead>
+        <tr>
+
+           
+            <th>ProductId</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>SubTotal</th>
+
+        </tr>
+
+    </thead>
+    @foreach (var data in Model)
+    {
+        <tr>
+
+            @*<td>@data.CartOrderId</td>*@
+            <td>@data.ProductId</td>
+            <td>@data.Quantity</td>
+            <td>@data.Price</td>
+            <td>@data.SubTotal</td>
+        </tr>
+    }
+
+</table>

@@ -18,12 +18,31 @@ namespace MedicineShop.Models
         }
     }
 
+    public class ApplicationRole : IdentityRole
+    {
+        public ApplicationRole() : base() { }
+
+        public ApplicationRole(string roleName): base(roleName) { }
+
+
+    }
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<DueAmount> DueAmounts { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<PrescriptionModel> PrescriptionModels { get; set; }
+        public DbSet<CartOrder> CartOrders { get; set; }
+        public DbSet<CartOrderDetails> CartOrderDetailses { get; set; }
+        public DbSet<AdminMassage> AdminMassages { get; set; }
+        public DbSet<CourierMessage> CourierMessages { get; set; }
+        public DbSet<DeliveryManMessage> DeliveryManMessages { get; set; }
+
+
+        public object CartOrderDetailss { get; internal set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -33,5 +52,9 @@ namespace MedicineShop.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<MedicineShop.ViewModel.CourierViewModel> CourierViewModels { get; set; }
+
+        
     }
 }

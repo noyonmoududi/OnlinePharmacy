@@ -7,6 +7,7 @@ using MedicineShop.Models;
 
 namespace MedicineShop.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductController : Controller
     {
         private ApplicationDbContext _context;
@@ -87,7 +88,18 @@ namespace MedicineShop.Controllers
 
             return RedirectToAction("Index");
         }
-
+        [AllowAnonymous]
+        public ActionResult OurProduct()
+        {
+            ViewBag.listProducts = _context.Products.ToList();
+            return View();
+        }
+        [AllowAnonymous]
+        public ActionResult Details(int id)
+        {
+            var item = _context.Products.Single(c => c.Id == id);
+            return View(item);
+        }
 
     }
 }

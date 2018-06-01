@@ -1,0 +1,49 @@
+﻿@using MedicineShop.Controllers
+
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+<h2>Cart</h2>
+
+@using (Html.BeginForm("Update", "ShoppingCart", FormMethod.Post))
+{
+
+    <table class="table table-hover table-responsive">
+        <tr>
+            <th>Option</th>
+            <th>Product Name</th>
+            <th>Unit Price</th>
+            <th>Quantity<input class="btn btn-default" type="submit" value="Update" /></th>
+            <th>Sub Total</th>
+        </tr>
+        @{
+            decimal sum = 0;
+            
+        }
+        @foreach (Item item in (List<Item>)Session["cart"])
+        {
+            sum = sum + Convert.ToInt32(item.Pr.Price)*item.Quantity;
+            <tr>
+                <td>@Html.ActionLink("Delete", "Delete", "ShoppingCart", new { id = item.Pr.Id }, null)</td>
+                <td>@item.Pr.ProductName</td>
+                <td>@item.Pr.Price</td>
+                <td><input type="number" size="3" name="quantity" value="@item.Quantity" /></td>
+                <td>
+                    @(item.Pr.Price * item.Quantity)
+
+                </td>
+
+            </tr>
+        }                
+        <tr>
+            <td align="right" colspan="4">Total</td>
+            <td>@sum</td>
+        </tr>
+
+    </table>
+            }
+<br /><br />
+<button class="btn btn-default" onclick="location.href = '@Url.Action("OurProduct", "Product")';return false;"> <i class="fa fa-chevron-left"></i> Continue Shopping</button>
+<button class="btn btn-primary" onclick="location.href = '@Url.Action("CheckOut", "ShoppingCart")';return false;"> Process to checkout <i class="fa fa-chevron-right"></i></button>

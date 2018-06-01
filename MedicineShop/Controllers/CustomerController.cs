@@ -7,6 +7,7 @@ using MedicineShop.Models;
 
 namespace MedicineShop.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CustomerController : Controller
     {
         private ApplicationDbContext _context;

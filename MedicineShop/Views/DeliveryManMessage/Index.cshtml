@@ -1,0 +1,88 @@
+﻿@model IEnumerable<MedicineShop.Models.CourierMessage>
+
+@{
+    ViewBag.Title = "Index";
+
+    if (this.User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (this.User.IsInRole("Courier"))
+    {
+        Layout = "~/Views/Shared/_LayoutCourier.cshtml";
+    }
+    else if (this.User.IsInRole("DeliveryMan"))
+    {
+        Layout = "~/Views/Shared/_LayoutDeliveryMan.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+    }
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.CartOrder.OrderShipName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CartOrder.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CartOrder.District)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CartOrder.OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CartOrder.PhoneNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CartOrder.Email)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CartOrder.OrderShipName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CartOrder.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CartOrder.District)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CartOrder.OrderDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CartOrder.PhoneNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CartOrder.Email)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Receive Order", "Send", "DeliveryManMessage", new { id = item.Id, cartid = item.CartOrderId }, null)|
+            @Html.ActionLink("Details", "Orderreview", "CartOrders", new { id = item.CartOrderId }, null)
+    
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,37 @@
+﻿@using MedicineShop.Models
+@model MedicineShop.Models.Product
+
+@{
+    ViewBag.Title = "OurProduct";
+}
+
+
+
+@foreach (Product p in ViewBag.listProducts)
+{
+    <div class="col products">
+
+        <div class="col-md-2 col-sm-3">
+
+            <a href="@Url.Action("Details", "Product", new { id = p.Id })">
+               
+                    <img src="~/Content/img/product1.jpg" alt="" class="img-responsive">            
+
+            </a>
+            
+            <div>
+                <p>Name:@p.ProductName</p>
+                <p>Companny:@p.CompannyName</p>             
+                <p>Price:@p.Price</p>
+                <div>
+                    <p class="buttons">
+                        <button class="btn btn-default" onclick="location.href = '@Url.Action("OrderNow", "ShoppingCart", new {id = p.Id}, null)';return false;"> <i class="fa fa-shopping-cart"></i>Add To Cart</button>
+                    </p>
+                </div>
+            </div>
+            <!-- /.text -->
+            <!-- /.product -->
+        </div>
+    </div>
+}
+

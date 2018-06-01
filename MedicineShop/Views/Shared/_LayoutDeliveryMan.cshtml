@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Obaju e-commerce template">
+    <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
+    <meta name="keywords" content="">
+
+    <title>
+        Online Pharmacy : Medicine Shop
+    </title>
+
+    <meta name="keywords" content="">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+
+    <!-- styles -->
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/css/owl.carousel.css" rel="stylesheet">
+    <link href="~/Content/css/owl.theme.css" rel="stylesheet">
+
+    <!-- theme stylesheet -->
+    <link href="~/Content/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+
+    <!-- your stylesheet with modifications -->
+    <link href="~/Content/css/custom.css" rel="stylesheet">
+
+    <script src="~/Content/js/respond.min.js"></script>
+
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="favicon.png">
+
+
+</head>
+<body>
+    <!-- *** NAVBAR ***
+    _________________________________________________________ -->
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+        <div class="container">
+            <div class="navbar-header">
+
+                <a class="navbar-brand home" data-animate-hover="bounce">
+
+                    <img src="~/Content/img/Logo1.png" alt="Obaju logo" class="hidden-xs">
+
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
+                        <span class="sr-only">Toggle search</span>
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <a class="btn btn-default navbar-toggle" href="basket.html">
+                        <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs"></span>
+                    </a>
+                </div>
+            </div>
+            <!--/.navbar-header -->
+
+            <div class="navbar-collapse collapse" id="navigation">
+
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="active">
+
+                        @Html.ActionLink("Home", "Index", "Home")
+                    </li>
+                    <li>  @Html.ActionLink("MyOrder", "Index", "DeliveryManMessage")</li>
+                </ul>
+
+            </div>
+            <!--/.nav-collapse -->
+            <li>
+                @Html.Partial("_LoginPartial")
+            </li>
+        </div>
+    </div>
+    <!-- /.container -->
+    <!-- /#navbar -->
+    <!-- *** NAVBAR END *** -->
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+
+    </div>
+    <!-- *** COPYRIGHT ***
+    _________________________________________________________ -->
+    <div id="copyright">
+        <div class="container">
+            <div class="col-lg-6">
+                <p class="pull-right">&copy; @DateTime.Now.Year - Coppyright by medicine shop</p>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- *** COPYRIGHT END *** -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/lib")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
+
+
+</body>
+
+</html>
+

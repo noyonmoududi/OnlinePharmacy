@@ -1,0 +1,78 @@
+﻿@model IEnumerable<MedicineShop.Models.PrescriptionModel>
+
+@{
+    ViewBag.Title = "Viewprescription";
+
+    if (this.User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (this.User.IsInRole("Courir"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (this.User.IsInRole("DeliveryMan"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+}
+
+<h2>Viewprescription</h2>
+<table class="table table-bordered table-hover table-responsive">
+    <thead>
+    <tr>
+
+        <th class="text-center">Name</th>
+        <th class="text-center">Address</th>
+        <th class="text-center">PhoneNo</th>
+        <th class="text-center">Prescription</th>
+        <th>.</th>
+
+    </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+
+                <td style="width: 25%">
+                    @item.Name
+                </td>
+                <td style="width: 25%">
+                    @item.Address
+                </td>
+                <td style="width: 25%">
+                    @item.PhoneNo
+                </td>
+                <td style="width: 20%">
+                    @if (item.PrescriptionImage != null)
+                    {
+
+
+                        var base64 = Convert.ToBase64String(item.PrescriptionImage);
+
+
+                        var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+
+
+
+                    <a href="@Url.Action("DisplayImage", "Prescription", new { id = item.Id })">
+                    
+                    <img src="@imgsrc" style="max-width: 40px; max-height: 40px" />
+
+                    </a>}
+                </td>
+            </tr>
+                        }
+    </tbody>
+    
+        
+            
+</table>
+

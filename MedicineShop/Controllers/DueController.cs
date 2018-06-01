@@ -8,6 +8,7 @@ using MedicineShop.ViewModel;
 
 namespace MedicineShop.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DueController : Controller
     {
 
@@ -75,36 +76,6 @@ namespace MedicineShop.Controllers
             return View("DueDetails",due);
         }
 
-        //public ActionResult Less(DueAmount Lessdue)
-        //{
-        //    var duecustomer = _context.Customers.SingleOrDefault(c => c.Id == Lessdue.CustomerId);
-        //    List<double> list = new List<double>();
-
-        //    var data = _context.Customers.ToList();
-        //    var data1 = _context.DueAmounts.ToList();
-
-        //    foreach (var group in data)
-        //    {
-        //        double value = 0;
-        //        foreach (var asdf in data1)
-        //        {
-
-        //            if (group.Id == asdf.CustomerId)
-        //            {
-
-        //                value = value - asdf.Amount;
-        //            }
-
-        //        }
-        //        group.DueAmounts = value;
-        //    }
-        //    double[] array = list.ToArray();
-
-        //    //var customer = _context.Customers.ToList();
-        //    //return Ok(data);
-
-        //    return RedirectToAction("Index", "Customer");
-        //}
-
+       
     }
 }

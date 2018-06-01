@@ -1,0 +1,62 @@
+﻿@model MedicineShop.ViewModel.OrderTrackingViewModel
+@{
+    /**/
+
+    ViewBag.Title = "Details";
+}
+
+<h3 class="text-center">Check your present order stage.Our system have three step.</h3>
+@if (Model.adminMassage != null)
+{
+<div class="alert alert-success">
+
+    <p class="text-center"><b>---Admin stage---</b></p>
+
+    <p class="text-center">@Model.adminMassage.Massage</p>
+
+    <p class="text-center">@Model.adminMassage.Location</p>
+
+    <p class="text-center">@Model.adminMassage.DateTime</p>
+
+
+</div>
+}
+@if (Model.courierMessage != null)
+{
+    <div class="alert alert-success">
+      
+        <p class="text-center"><b>---Courier stage---</b></p>
+      
+        <p class="text-center">@Model.courierMessage.Message<p>
+        <p class="text-center">@Model.courierMessage.Location<p>
+        <p class="text-center">@Model.courierMessage.DateTime</p>
+     
+    </div>
+}
+@if (Model.deliveryManMessage != null)
+{
+    <div class="alert alert-success">
+      
+        <p class="text-center"><b>---DeliveryMan Stage---</b></p>
+    
+        <p class="text-center">
+            @Model.deliveryManMessage.Message
+        </p>
+        <p class="text-center">
+            @Model.deliveryManMessage.Location
+        </p>
+        <p class="text-center">
+            @Model.deliveryManMessage.DateTime
+        </p>
+ 
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        <p class="text-center"><b>your Order is processing</b></p>
+    </div>
+}
+
+
+
